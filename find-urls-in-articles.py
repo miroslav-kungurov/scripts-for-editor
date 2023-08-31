@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-keywords = ['google.com']
+keywords = ['proglib.io']
 
-with open('urls.txt', 'r', encoding='utf-8') as f:
+with open('urls-test.txt', 'r', encoding='utf-8') as f:
     urls = f.readlines()
 
 result_file = open('result.txt', 'w', encoding='utf-8')
@@ -21,8 +21,8 @@ for url in urls:
                     if link_text:
                         for keyword in keywords:
                             if keyword in link_text:
-                                print(f"Ссылка '{keyword}' найдена на странице: {url}")
-                                result_file.write(f"{link_text}\n")
+                                print(f"'{keyword}' найдено в ссылке {link_text} на странице: {url}")
+                                result_file.write(f"{keyword}  ——————  {link_text}  ——————  {url}\n")
 
     except UnicodeEncodeError as e:
         print(f"Encoding error on page {url}: {e}")
