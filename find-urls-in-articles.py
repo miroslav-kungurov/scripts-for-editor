@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-keywords = ['proglib.io']
+keywords = ['google.com']
 
-with open('urls-test.txt', 'r', encoding='utf-8') as f:
+with open('urls.txt', 'r', encoding='utf-8') as f:
     urls = f.readlines()
 
 result_file = open('result.txt', 'w', encoding='utf-8')
