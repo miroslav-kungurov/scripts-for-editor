@@ -3,14 +3,14 @@ from bs4 import BeautifulSoup
 import re
 
 # Список ключевых слов для поиска
-keywords = ['Google', 'яндекс']
+keywords = ['AI']
 
 # Открываем файл urls.txt и читаем адреса страниц
-with open('urls.txt', 'r') as file:
+with open('urls.txt', 'r', encoding='utf-8') as file:
     urls = file.readlines()
 
 # Создаем или открываем файл result.txt для записи найденных ссылок
-result_file = open('result.txt', 'w')
+result_file = open('result.txt', 'w', encoding='utf-8')
 
 
 # Проходим по каждому адресу страницы
@@ -29,8 +29,7 @@ for url in urls:
             pattern = rf'(?<!\w){re.escape(keyword)}(?!\w)'
             if re.findall(pattern, page_text):
                 print(f"Слово '{keyword}' найдено на странице: {url}")
-                result_file.write(url + '\n')  # Записываем ссылку в файл result.txt
-
+                result_file.write(f"{keyword}  ——————  {url}\n")  # Записываем ссылку в файл result.txt
 
 
 
