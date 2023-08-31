@@ -21,7 +21,7 @@ for url in urls:
                     if link_text:
                         for keyword in keywords:
                             if keyword in link_text:
-                                print(f"Найдено: {keyword}, Ссылка: {link_text}")
+                                print(f"Ссылка '{keyword}' найдена на странице: {url}")
                                 result_file.write(f"{link_text}\n")
 
     except UnicodeEncodeError as e:
