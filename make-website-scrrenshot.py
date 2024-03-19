@@ -46,7 +46,7 @@ def create_output_directory():
 
     return output_dir
 
-# Пример использования
+# Запуск
 file_path = "urls.txt"
 output_dir = create_output_directory()
 process_urls_from_file(file_path, output_dir)
