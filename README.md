@@ -20,7 +20,7 @@
 - удаляет в каждой строчке текстового файла все символы до определенных символов
 
 
-Скрипт add_characters_before_each_line_in_txt_file.py
+Скрипт add_characters_to_the_beginning_of_the_string_in_txt_file.py
 - добавляет символы перед каждой строкой в текстовом файле
 
 
