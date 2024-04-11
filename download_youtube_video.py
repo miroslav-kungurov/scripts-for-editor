@@ -10,7 +10,7 @@ def download_video(url):
         title = video.title
 
         # Удаляем знаки препинания и оставляем только буквы и числа
-        title = re.sub(r'[^a-zA-Z0-9 ]', '', title)
+        title = re.sub(r'[^a-zA-Zа-яА-Я0-9\s]', '', title)
 
         # Заменяем пробелы на подчеркивания
         title = title.replace(' ', '_')
