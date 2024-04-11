@@ -9,18 +9,21 @@ def convert_mp4_to_gif(mp4_path, output_path, max_size_kb, resolution_percent):
     original_width, original_height = clip.size
 
     # Вычисление нового разрешения на основе процента уменьшения
-    new_width = int(original_width * (1 - resolution_percent / 100))
-    new_height = int(original_height * (1 - resolution_percent / 100))
+    new_width = int(original_width * (resolution_percent / 100))
+    new_height = int(original_height * (resolution_percent / 100))
 
     # Изменение разрешения видео
     clip = clip.resize((new_width, new_height))
 
-    # Определение начального размера GIF
-    size = 1.0
+    # Определение начального качества GIF
+    quality = 100
+
+    # Флаг для отслеживания текущей итерации (True - изменение качества, False - изменение размера)
+    quality_iteration = True
 
     while True:
-        # Создание анимированного GIF с текущим размером
-        clip.resize(size).write_gif(output_path, fps=15, program='ffmpeg')
+        # Создание анимированного GIF с текущим качеством
+        clip.write_gif(output_path, fps=15, program='ffmpeg', opt=f'optimizeplus -q {quality}')
 
         # Проверка размера полученного GIF
         gif_size = os.path.getsize(output_path) / 1024  # Размер в КБ
@@ -28,8 +31,17 @@ def convert_mp4_to_gif(mp4_path, output_path, max_size_kb, resolution_percent):
         if gif_size <= max_size_kb:
             break
         else:
-            # Уменьшение размера GIF, если он превышает ограничение
-            size -= 0.05
+            if quality_iteration:
+                # Уменьшение качества GIF на текущей итерации
+                quality -= 5
+                quality_iteration = False
+            else:
+                # Уменьшение разрешения GIF на текущей итерации
+                resolution_percent -= 10
+                new_width = int(original_width * (resolution_percent / 100))
+                new_height = int(original_height * (resolution_percent / 100))
+                clip = clip.resize((new_width, new_height))
+                quality_iteration = True
 
     print(f"Конвертация завершена. Размер GIF: {gif_size:.2f} КБ")
 
@@ -46,8 +58,8 @@ if not os.path.exists(gif_folder):
 # Максимальный размер GIF в килобайтах
 max_size_kb = 2500
 
-# Процент уменьшения разрешения (например, 15%)
-resolution_percent = 5
+# Процент разрешения (например, 50% от исходного разрешения)
+resolution_percent = 50
 
 # Обработка всех файлов с расширением .mp4 в папке video
 for filename in os.listdir(video_folder):
