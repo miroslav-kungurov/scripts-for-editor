@@ -5,7 +5,7 @@ from PIL import Image
 input_folder = "img to compress"
 
 # Папка для сохранения сжатых изображений
-output_folder = "img to compress/compressed"
+output_folder = "img to compress/jpeg/compressed"
 
 # Процент сжатия (например, 97%)
 compression_percent = 50
