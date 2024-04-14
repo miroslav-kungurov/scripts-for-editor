@@ -1,7 +1,8 @@
+import os
 import re
 from pytube import YouTube
 
-def download_video(url):
+def download_video(url, download_path):
     try:
         # Создаем объект YouTube
         video = YouTube(url)
@@ -18,9 +19,9 @@ def download_video(url):
         # Получаем поток с наилучшим качеством
         stream = video.streams.get_highest_resolution()
 
-        # Скачиваем видео
+        # Скачиваем видео в указанную папку
         print(f"Скачивание видео: {title}")
-        stream.download(filename=f"{title}.mp4")
+        stream.download(output_path=download_path, filename=f"{title}.mp4")
         print("Видео успешно скачано!")
 
     except Exception as e:
@@ -33,6 +34,13 @@ video_urls = [
     "https://www.youtube.com/watch?v=wjZofJX0v4M"
 ]
 
-# Скачиваем каждое видео из списка
+# Путь к папке "downloads"
+download_folder = "downloads"
+
+# Создаем папку "downloads", если она не существует
+if not os.path.exists(download_folder):
+    os.makedirs(download_folder)
+
+# Скачиваем каждое видео из списка и сохраняем в папку "downloads"
 for url in video_urls:
-    download_video(url)
+    download_video(url, download_folder)
