@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вырезать видео</title>
+</head>
+<body>
+    <h1>Вырезать видео</h1>
+    <form method="post">
+        <label>Выберите видео файлы:</label>
+        <br>
+        {% for video_file in video_files %}
+        <input type="radio" id="{{ video_file }}" name="video_file" value="{{ video_file }}">
+        <label for="{{ video_file }}">{{ video_file }}</label>
+        <br>
+        {% endfor %}
+        <br>
+        <div id="time-ranges">
+            <div>
+                <label for="start_minute_0">Начальная минута:</label>
+                <input type="number" id="start_minute_0" name="start_minute_0" min="0" required>
+                <label for="start_second_0">Начальная секунда:</label>
+                <input type="number" id="start_second_0" name="start_second_0" min="0" max="59" required>
+                <label for="end_minute_0">Конечная минута:</label>
+                <input type="number" id="end_minute_0" name="end_minute_0" min="0" required>
+                <label for="end_second_0">Конечная секунда:</label>
+                <input type="number" id="end_second_0" name="end_second_0" min="0" max="59" required>
+            </div>
+
+        </div>
+        <br>
+        <button type="button" onclick="addTimeRange()">Добавить еще диапазон</button>
+        <br>
+        <br>
+        <input type="submit" value="Вырезать">
+    </form>
+
+    {% if cut_count > 0 %}
+    <p>Столько кусков вырезаны: {{ cut_count }}</p>
+    {% endif %}
+
+    <script>
+        let rangeCounter = 1;
+
+        function addTimeRange() {
+            const timeRanges = document.getElementById('time-ranges');
+            const newRange = document.createElement('div');
+
+            newRange.innerHTML = `
+                <label for="start_minute_${rangeCounter}">Начальная минута:</label>
+                <input type="number" id="start_minute_${rangeCounter}" name="start_minute_${rangeCounter}" min="0" required>
+                <label for="start_second_${rangeCounter}">Начальная секунда:</label>
+                <input type="number" id="start_second_${rangeCounter}" name="start_second_${rangeCounter}" min="0" max="59" required>
+                <label for="end_minute_${rangeCounter}">Конечная минута:</label>
+                <input type="number" id="end_minute_${rangeCounter}" name="end_minute_${rangeCounter}" min="0" required>
+                <label for="end_second_${rangeCounter}">Конечная секунда:</label>
+                <input type="number" id="end_second_${rangeCounter}" name="end_second_${rangeCounter}" min="0" max="59" required>
+            `;
+
+            timeRanges.appendChild(newRange);
+            rangeCounter++;
+        }
+    </script>
+</body>
+</html>
