@@ -45,7 +45,7 @@ def resize_images(folder_path, output_folder, height=None, width=None):
 folder_path = "img to resize/"
 
 # Путь к папке для сохранения измененных изображений
-output_folder = "img to resize/resizedXY"
+output_folder = "img to resize/resized XY"
 
 # Запрашиваем у пользователя высоту или ширину
 choice = input("Введите 'h' для изменения высоты или 'w' для изменения ширины: ")

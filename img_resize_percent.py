@@ -3,7 +3,7 @@ from PIL import Image
 
 def resize_images(folder_path, percentage):
     # Создаем папку "resized", если она не существует
-    resized_folder = os.path.join(folder_path, "resized")
+    resized_folder = os.path.join(folder_path, "resized percent")
     if not os.path.exists(resized_folder):
         os.makedirs(resized_folder)
 
