@@ -26,8 +26,13 @@ def download_video(url):
     except Exception as e:
         print(f"Ошибка при скачивании видео: {str(e)}")
 
-# URL видео на YouTube
-video_url = "https://youtu.be/wjZofJX0v4M?si=cigxsRgfz9o8iYij"
+# Список URL видео на YouTube
+video_urls = [
+    "https://www.youtube.com/watch?v=wjZofJX0v4M",
+    "https://www.youtube.com/watch?v=wjZofJX0v4M",
+    "https://www.youtube.com/watch?v=wjZofJX0v4M"
+]
 
-# Скачиваем видео
-download_video(video_url)
+# Скачиваем каждое видео из списка
+for url in video_urls:
+    download_video(url)
