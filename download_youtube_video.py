@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import re
 from pytube import YouTube
@@ -30,8 +31,6 @@ def download_video(url, download_path):
 # Список URL видео на YouTube
 video_urls = [
     "https://www.youtube.com/watch?v=wjZofJX0v4M",
-    "https://www.youtube.com/watch?v=wjZofJX0v4M",
-    "https://www.youtube.com/watch?v=wjZofJX0v4M"
 ]
 
 # Путь к папке "downloads"
