@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
+import time
 
 def take_screenshot(url, output_dir):
     # Извлекаем имя сайта из URL
@@ -19,6 +20,7 @@ def take_screenshot(url, output_dir):
         browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1920, "height": 1080})
         page.goto(url)
+        time.sleep(1)
         page.screenshot(path=os.path.join(output_dir, file_name), type="jpeg", quality=100)
         browser.close()
 
