@@ -40,6 +40,6 @@ def change_video_speed(input_video, output_dir, speed_factor):
 # Пример использования
 input_video = "downloads/video.mp4"
 output_dir = "change video speed"
-speed_factor = 0.5  # Ускорить видео в 1.5 раза
+speed_factor = 1.5  # Ускорить видео в 1.5 раза
 
 change_video_speed(input_video, output_dir, speed_factor)
