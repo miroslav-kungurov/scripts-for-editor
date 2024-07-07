@@ -20,7 +20,7 @@ def merge_json_files(file_list, output_file):
 
 if __name__ == "__main__":
     # Список JSON файлов для объединения
-    json_files = ["habr_articles0.json", "habr_articles.json"]
+    json_files = ["file1.json", "file2.json"]
     # Имя выходного файла
     output_json = "merged.json"
 
